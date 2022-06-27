@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron">
+    <h1 class="display-6">Welcome to<br>BT Challenge Application</h1>
+    <?php if ($this->authentication()->hasIdentity()) { ?>
+        <span>Hello <?php echo $this->authentication()->getIdentity()->getUsername() ?>! Enjoy the app</span>
+    <?php } else { ?>
+    <a class="btn btn-primary btn-lg" href="<?php echo $this->url('login') ?>">
+        Login
+    </a>
+    <?php } ?>
+</div>

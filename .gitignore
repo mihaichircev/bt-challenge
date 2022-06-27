@@ -1,0 +1,6 @@
+app/vendor/
+app/config/development.config.php
+app/data/cache/*
+!app/data/cache/.gitkeep
+phpunit.xml
+app/.phpunit.result.cache

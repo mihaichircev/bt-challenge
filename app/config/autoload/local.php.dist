@@ -1,0 +1,45 @@
+<?php
+
+use Doctrine\DBAL\Driver\PDO\MySQL\Driver;
+
+return [
+    'doctrine' => [
+        'orm_autoload_annotations' => true,
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => Driver::class,
+                'params' => [
+                    'host' => 'db',
+                    'port' => '3306',
+                    'user' => 'root',
+                    'password' => '123qwe',
+                    'dbname' => 'bt-challenge-dev',
+                    'charset' => 'utf8',
+                ]
+            ],
+        ],
+        'configuration' => [
+            'orm_default' => [
+                'metadata_cache' => 'memcached',
+                'query_cache' => 'memcached',
+                'result_cache' => 'memcached',
+            ]
+        ],
+        'cache' => [
+            'memcached' => [
+                'instance' => 'memcached'
+            ]
+        ],
+        'migrations_configuration' => [
+            'orm_default' => [
+                'migrations_paths' => [
+                    'DoctrineORM\Migrations' => __DIR__ . '/../../data/DoctrineORMModule/Migrations'
+                ]
+            ]
+        ],
+    ],
+    'memcached' => [
+        'host' => 'memcached',
+        'port' => 11211
+    ],
+];

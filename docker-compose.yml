@@ -13,7 +13,7 @@ services:
       - 80:80
       - 443:443
   php:
-    build: ./docker/php-80
+    build: ./docker/php-81
     container_name: bt-challenge_php
     volumes:
       - ./app:/var/www/html
@@ -23,13 +23,30 @@ services:
       - db
   db:
     image: mariadb:latest
-    container_name: db
     volumes:
       - db-data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=123qwe
     ports:
       - 3306:3306
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: bt-challenge_rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+  memcached:
+    image: memcached:1.4
+    ports:
+      - 11211:11211
 volumes:
   db-data:
     driver: local

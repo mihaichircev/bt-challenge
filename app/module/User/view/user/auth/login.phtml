@@ -1,0 +1,19 @@
+<div class="col-sm">
+    <?php echo $this->flashMessenger()->renderCurrent('error', ['alert', 'alert-dismissible', 'alert-danger']); ?>
+    
+    <?php echo $this->form()->openTag($form); ?>
+
+    <div class="form-group">
+        <?php echo $this->formRow($form->get('username')) ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formRow($form->get('password')) ?>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-sm">Login</button>
+    </div>
+
+    <?php echo $this->form()->closeTag(); ?>
+</div>
