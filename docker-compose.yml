@@ -1,0 +1,35 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: bt-challenge_nginx
+    links:
+      - php
+    volumes:
+      - ./app:/var/www/html:ro
+      - ./docker/nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+    ports:
+      - 80:80
+      - 443:443
+  php:
+    build: ./docker/php-80
+    container_name: bt-challenge_php
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: mariadb:latest
+    container_name: db
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123qwe
+    ports:
+      - 3306:3306
+volumes:
+  db-data:
+    driver: local
