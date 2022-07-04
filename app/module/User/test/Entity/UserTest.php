@@ -22,7 +22,7 @@ class UserTest extends TestCase
     public function isOtpLimitReachedFalse(): void
     {
         $arrayCollectionMock = $this->prophesize(ArrayCollection::class);
-        
+
         $userMock = $this->prophesize(User::class);
         $userMock->getOtps()
             ->shouldBeCalled()
@@ -33,20 +33,20 @@ class UserTest extends TestCase
         $arrayCollectionMock->matching($criteriaMock)
             ->shouldBeCalled()
             ->willReturn($arrayCollectionMock);
-        
+
         $arrayCollectionMock->count()
             ->shouldBeCalled()
             ->willReturn(3);
 
         $user = new User();
-        
+
         $this->assertFalse($user->isOtpLimitReached());
     }
 
     public function isOtpLimitReachedTrue(): void
     {
         $arrayCollectionMock = $this->prophesize(ArrayCollection::class);
-        
+
         $userMock = $this->prophesize(User::class);
         $userMock->getOtps()
             ->shouldBeCalled()
@@ -57,13 +57,13 @@ class UserTest extends TestCase
         $arrayCollectionMock->matching($criteriaMock)
             ->shouldBeCalled()
             ->willReturn($arrayCollectionMock);
-        
+
         $arrayCollectionMock->count()
             ->shouldBeCalled()
             ->willReturn(5);
 
         $user = new User();
-        
+
         $this->assertTrue($user->isOtpLimitReached());
     }
 }

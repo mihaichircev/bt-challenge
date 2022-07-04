@@ -34,7 +34,7 @@ final class QueueCommand extends Command
 
     protected function configure(): void
     {
-        if(null !== self::$defaultName) {
+        if (null !== self::$defaultName) {
             $this->setName(self::$defaultName);
         }
     }

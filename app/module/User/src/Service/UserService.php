@@ -14,13 +14,13 @@ class UserService
     {
     }
 
-    public function create($username, $password, $email): void
+    public function create(string $username, string $password, string $email): void
     {
         $user = new User();
         $user->setUsername($username);
         $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
         $user->setEmail($email);
-        
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
